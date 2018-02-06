@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace CurrencyExchange
+namespace ZKosior.ThoughtWotks.GalaxyMarket.CurrencyExchange
 {
     public static class RomanConverter
     {

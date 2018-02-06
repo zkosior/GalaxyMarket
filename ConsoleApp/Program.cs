@@ -1,8 +1,8 @@
-﻿using CurrencyExchange;
-using System;
+﻿using System;
 using System.IO;
+using ZKosior.ThoughtWotks.GalaxyMarket.CurrencyExchange;
 
-namespace ConsoleApp
+namespace ZKosior.ThoughtWotks.GalaxyMarket.ConsoleApp
 {
     internal class Program
     {
@@ -41,8 +41,8 @@ namespace ConsoleApp
             if (args.Length < 1)
             {
                 Console.WriteLine("Wrong number of params specified. Usage:");
-                Console.WriteLine(@"[applicaiton] Input.txt");
-                Console.WriteLine(@"[applicaiton] Input.txt Output.txt");
+                Console.WriteLine(@"[application] Input.txt");
+                Console.WriteLine(@"[application] Input.txt Output.txt");
                 return false;
             }
 

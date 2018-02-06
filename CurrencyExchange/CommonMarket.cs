@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CurrencyExchange
+namespace ZKosior.ThoughtWotks.GalaxyMarket.CurrencyExchange
 {
     public class CommonMarket
     {

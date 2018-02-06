@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace CurrencyExchange
+namespace ZKosior.ThoughtWotks.GalaxyMarket.CurrencyExchange
 {
     public class LanguageInterpreter
     {

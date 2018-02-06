@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AssemblyName>ZKosior.ThoughtWorks.GalaxyMarket.CurrencyExchange</AssemblyName>
+    <RootNamespace>ZKosior.ThoughtWorks.GalaxyMarket.CurrencyExchange</RootNamespace>
   </PropertyGroup>
 
 </Project>

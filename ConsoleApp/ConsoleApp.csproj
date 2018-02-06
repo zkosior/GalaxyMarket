@@ -3,7 +3,9 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <StartupObject>ConsoleApp.Program</StartupObject>
+    <StartupObject>ZKosior.ThoughtWotks.GalaxyMarket.ConsoleApp.Program</StartupObject>
+    <AssemblyName>ConsoleApp</AssemblyName>
+    <RootNamespace>ZKosior.ThoughtWorks.GalaxyMarket.ConsoleApp</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,8 +1,8 @@
-﻿using CurrencyExchange;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using System;
+using ZKosior.ThoughtWotks.GalaxyMarket.CurrencyExchange;
 
-namespace CurrencyExchangeTests
+namespace ZKosior.ThoughtWotks.GalaxyMarket.CurrencyExchangeTests
 {
     [TestFixture]
     public class UnitConverterTests
