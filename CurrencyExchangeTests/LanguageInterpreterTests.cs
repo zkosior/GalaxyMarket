@@ -24,12 +24,58 @@ namespace CurrencyExchangeTests
             Assert.AreEqual("pish tegj glob glob is 42", interpreter.Add("how much is pish tegj glob glob ?"));
         }
 
+        [Test]
+        public void QueryingForCommodity_ReturnsPriceOfChosenAmountOfSelectedProduct()
+        {
+            var interpreter = new LanguageInterpreter();
+            this.InitializeSymbols(interpreter);
+            this.InitializeCommodities(interpreter);
+
+            Assert.AreEqual("glob prok Silver is 68 Credits", interpreter.Add("how many Credits is glob prok Silver ?"));
+        }
+
+        [Test]
+        public void UnknownQuery_ReceivesDefaultResponse()
+        {
+            var interpreter = new LanguageInterpreter();
+
+            Assert.AreEqual("I have no idea what you are talking about", interpreter.Add("how much wood could a woodchuck chuck if a woodchuck could chuck wood ?"));
+        }
+
+        [Test]
+        public void TestFromInstructions()
+        {
+            var interpreter = new LanguageInterpreter();
+
+            interpreter.Add("glob is I");
+            interpreter.Add("prok is V");
+            interpreter.Add("pish is X");
+            interpreter.Add("tegj is L");
+
+            interpreter.Add("glob glob Silver is 34 Credits");
+            interpreter.Add("glob prok Gold is 57800 Credits");
+            interpreter.Add("pish pish Iron is 3910 Credits");
+
+            Assert.AreEqual("pish tegj glob glob is 42", interpreter.Add("how much is pish tegj glob glob ?"));
+            Assert.AreEqual("glob prok Silver is 68 Credits", interpreter.Add("how many Credits is glob prok Silver ?"));
+            Assert.AreEqual("glob prok Gold is 57800 Credits", interpreter.Add("how many Credits is glob prok Gold ?"));
+            Assert.AreEqual("glob prok Iron is 782 Credits", interpreter.Add("how many Credits is glob prok Iron ?"));
+            Assert.AreEqual("I have no idea what you are talking about", interpreter.Add("how much wood could a woodchuck chuck if a woodchuck could chuck wood ?"));
+        }
+
         private void InitializeSymbols(LanguageInterpreter interpreter)
         {
             interpreter.Add("glob is I");
             interpreter.Add("prok is V");
             interpreter.Add("pish is X");
             interpreter.Add("tegj is L");
+        }
+
+        private void InitializeCommodities(LanguageInterpreter interpreter)
+        {
+            interpreter.Add("glob glob Silver is 34 Credits");
+            interpreter.Add("glob prok Gold is 57800 Credits");
+            interpreter.Add("pish pish Iron is 3910 Credits");
         }
     }
 }
