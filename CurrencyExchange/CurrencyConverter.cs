@@ -14,6 +14,16 @@ namespace CurrencyExchange
 
         public string ToRoman(string intergalacticAmount)
         {
+            return this.JoinOutput(intergalacticAmount);
+        }
+
+        public int ToArabic(string intergalacticAmount)
+        {
+            return RomanConverter.ToArabic(this.JoinOutput(intergalacticAmount));
+        }
+
+        private string JoinOutput(string intergalacticAmount)
+        {
             return String.Join(string.Empty, this.ConvertToRoman(intergalacticAmount));
         }
 

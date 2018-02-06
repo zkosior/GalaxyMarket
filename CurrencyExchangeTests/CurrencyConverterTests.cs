@@ -22,6 +22,20 @@ namespace CurrencyExchangeTests
         }
 
         [Test]
+        public void ConvertsSingleRegisteredIntergalacticUnitToArabicNumeral()
+        {
+            var definitions = InitializeDefinitions();
+            Assert.AreEqual(1, new IntergalacticCurrencyConverter(definitions).ToArabic("glob"));
+        }
+
+        [Test]
+        public void ConvertsComplexIntergalacticUnitToArabicNumeral()
+        {
+            var definitions = InitializeDefinitions();
+            Assert.AreEqual(2, new IntergalacticCurrencyConverter(definitions).ToArabic("glob glob"));
+        }
+
+        [Test]
         public void WhenIntergalacticNotRegistered_Throws()
         {
             var definitions = InitializeDefinitions();
