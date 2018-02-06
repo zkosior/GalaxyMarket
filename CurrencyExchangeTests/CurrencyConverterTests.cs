@@ -8,20 +8,6 @@ namespace CurrencyExchangeTests
     public class IntergalacticCurrencyConverterTests
     {
         [Test]
-        public void ConvertsSingleRegisteredIntergalacticUnitToRomanNumeral()
-        {
-            var definitions = InitializeDefinitions();
-            Assert.AreEqual("I", new IntergalacticCurrencyConverter(definitions).ToRoman("glob"));
-        }
-
-        [Test]
-        public void ConvertsComplexIntergalacticUnitToRomanNumeral()
-        {
-            var definitions = InitializeDefinitions();
-            Assert.AreEqual("II", new IntergalacticCurrencyConverter(definitions).ToRoman("glob glob"));
-        }
-
-        [Test]
         public void ConvertsSingleRegisteredIntergalacticUnitToArabicNumeral()
         {
             var definitions = InitializeDefinitions();
@@ -39,7 +25,7 @@ namespace CurrencyExchangeTests
         public void WhenIntergalacticNotRegistered_Throws()
         {
             var definitions = InitializeDefinitions();
-            Assert.Throws<AggregateException>(() => new IntergalacticCurrencyConverter(definitions).ToRoman("asdf"));
+            Assert.Throws<AggregateException>(() => new IntergalacticCurrencyConverter(definitions).ToArabic("asdf"));
         }
 
         private CurrencyDefinition InitializeDefinitions()

@@ -12,11 +12,6 @@ namespace CurrencyExchange
             this.definitions = definitions;
         }
 
-        public string ToRoman(string intergalacticAmount)
-        {
-            return this.JoinOutput(intergalacticAmount);
-        }
-
         public int ToArabic(string intergalacticAmount)
         {
             return RomanConverter.ToArabic(this.JoinOutput(intergalacticAmount));
