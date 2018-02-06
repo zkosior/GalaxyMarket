@@ -72,5 +72,12 @@ namespace CurrencyExchangeTests
             Assert.AreEqual(3798, RomanConverter.ToArabic("MMMDCCXCVIII"));
             Assert.AreEqual(2444, RomanConverter.ToArabic("MMCDXLIV"));
         }
+
+        [Test]
+        public void WhenIncorrectRomanNumber_Throws()
+        {
+            Assert.Throws<ArgumentException>(() => RomanConverter.ToArabic("MMCMDCCXCVIII"));
+            Assert.Throws<ArgumentException>(() => RomanConverter.ToArabic("MMCDXLXIVII"));
+        }
     }
 }

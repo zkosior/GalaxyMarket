@@ -31,6 +31,11 @@ namespace CurrencyExchange
 
         public static int ToArabic(string romanAmount)
         {
+            CheckSpecial(romanAmount, "D", "CM");
+            CheckSpecial(romanAmount, "L", "XC");
+            CheckSpecial(romanAmount, "V", "IX");
+            CheckForRemoveAndAdd(romanAmount);
+
             var result = 0;
             var romanToConvert = romanAmount;
 
@@ -49,6 +54,25 @@ namespace CurrencyExchange
             }
 
             return result;
+        }
+
+        private static void CheckSpecial(string romanDigits, string special, string contra)
+        {
+            var ds = romanDigits.Split(special);
+            if (ds.Length > 2) throw new ArgumentException($"Too many Roman digits: {special}");
+            if (ds.Length == 2 && romanDigits.Contains(contra)) throw new ArgumentException($"Incorrect combination: {contra}+{special}");
+        }
+
+        private static void CheckForRemoveAndAdd(string romanDigits)
+        {
+            SpecialCaseRemoveAndAdd(romanDigits, "CDC");
+            SpecialCaseRemoveAndAdd(romanDigits, "XLX");
+            SpecialCaseRemoveAndAdd(romanDigits, "IVI");
+        }
+
+        private static void SpecialCaseRemoveAndAdd(string romanDigits, string pattern)
+        {
+            if (romanDigits.Contains(pattern)) throw new ArgumentException($"Incorrect Roman numeral: {pattern}");
         }
     }
 }
