@@ -5,10 +5,10 @@ namespace CurrencyExchange
 {
     public class CurrencyDefinition
     {
-        private readonly Dictionary<string, Roman> definitions = new Dictionary<string, Roman>();
-        private readonly List<Roman> whitelistedNumerals = new List<Roman> { Roman.I, Roman.V, Roman.X, Roman.L, Roman.C, Roman.D, Roman.M };
+        private readonly Dictionary<string, string> definitions = new Dictionary<string, string>();
+        private readonly List<string> whitelistedNumerals = new List<string> { "I", "V", "X", "L", "C", "D", "M" };
 
-        public void AddDefinition(string unit, Roman definition)
+        public void AddDefinition(string unit, string definition)
         {
             if (!this.whitelistedNumerals.Contains(definition))
             {
@@ -28,7 +28,7 @@ namespace CurrencyExchange
             this.definitions.Add(unit, definition);
         }
 
-        public Roman this[string key] => this.definitions.ContainsKey(key)
+        public string this[string key] => this.definitions.ContainsKey(key)
             ? this.definitions[key]
             : throw new AggregateException($"Intergalactic unit not registered: {key}");
 

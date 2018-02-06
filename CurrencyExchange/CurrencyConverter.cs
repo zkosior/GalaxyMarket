@@ -26,7 +26,7 @@ namespace CurrencyExchange
                     throw new AggregateException();
                 }
 
-                yield return this.definitions[unit].ToString();
+                yield return this.definitions[unit];
             }
         }
     }

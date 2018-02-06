@@ -31,10 +31,10 @@ namespace CurrencyExchangeTests
         private CurrencyDefinition InitializeDefinitions()
         {
             var definitions = new CurrencyDefinition();
-            definitions.AddDefinition("glob", Roman.I);
-            definitions.AddDefinition("prok", Roman.V);
-            definitions.AddDefinition("pish", Roman.X);
-            definitions.AddDefinition("tegj", Roman.L);
+            definitions.AddDefinition("glob", "I");
+            definitions.AddDefinition("prok", "V");
+            definitions.AddDefinition("pish", "X");
+            definitions.AddDefinition("tegj", "L");
 
             return definitions;
         }
