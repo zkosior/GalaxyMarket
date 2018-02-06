@@ -20,46 +20,38 @@ namespace CurrencyExchange
             if (string.IsNullOrWhiteSpace(line))
                 throw new ArgumentNullException($"{nameof(line)}");
 
-            if (!line.EndsWith("?"))
+            var components = line.TrimEnd('?', ' ').Split(" is ");
+            if (components.Length == 2)
             {
-                var components = line.Split(" is ");
-                if (components.Length == 2)
+                if (components[0] == "how much")
                 {
-                    var secondPart = components[1].Split(" ");
-                    if (secondPart.Length == 1)
+                    return $"{components[1]} is {this.converter.ToArabic(components[1])}";
+                }
+                if (components[0] == "how many Credits")
+                {
+                    var commodity = components[1].Split(" ").Last();
+                    if (char.IsUpper(commodity[0]))
                     {
-                        this.definitions.AddDefinition(components[0], components[1]);
-                        return null;
-                    }
-                    if (secondPart.Length == 2 && secondPart[1] == "Credits")
-                    {
-                        var commodity = components[0].Split(" ").Last();
-                        if (char.IsUpper(commodity[0]))
-                        {
-                            if (int.TryParse(secondPart[0], out var price))
-                            {
-                                this.market.Add(commodity, components[0].Replace(commodity, string.Empty).Trim(), price);
-                                return null;
-                            }
-                        }
+                        var amount = components[1].Replace(commodity, string.Empty).TrimEnd();
+                        return $"{amount} {commodity} is {this.market.Query(commodity, amount):0.#} Credits";
                     }
                 }
-            }
-            else
-            {
-                var components = line.Split(" is ");
-                if (components.Length == 2 && line.EndsWith(" ?"))
+                var secondPart = components[1].Split(" ");
+                if (secondPart.Length == 1)
                 {
-                    if (components[0] == "how much")
+                    this.definitions.AddDefinition(components[0], components[1]);
+                    return null;
+                }
+                if (secondPart.Length == 2 && secondPart[1] == "Credits")
+                {
+                    var commodity = components[0].Split(" ").Last();
+                    if (char.IsUpper(commodity[0]))
                     {
-                        return $"{components[1].TrimEnd('?', ' ')} is {this.converter.ToArabic(components[1].TrimEnd('?', ' '))}";
-                    }
-                    var secondPart = components[1].TrimEnd('?', ' ').Split(" ");
-                    if (components[0] == "how many Credits" && char.IsUpper(secondPart.Last()[0]))
-                    {
-                        var commodity = secondPart.Last();
-                        var amount = components[1].TrimEnd('?', ' ').Replace(commodity, string.Empty).TrimEnd();
-                        return $"{amount} {commodity} is {this.market.Query(commodity, components[1].TrimEnd('?', ' ').Replace(commodity, string.Empty).TrimEnd()):0.#} Credits";
+                        if (int.TryParse(secondPart[0], out var price))
+                        {
+                            this.market.Add(commodity, components[0].Replace(commodity, string.Empty).Trim(), price);
+                            return null;
+                        }
                     }
                 }
             }
