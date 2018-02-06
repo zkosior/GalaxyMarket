@@ -1,24 +1,33 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace CurrencyExchange
 {
-    public class CurrencyConverter
+    public class IntergalacticCurrencyConverter
     {
         private readonly CurrencyDefinition definitions;
 
-        public CurrencyConverter(CurrencyDefinition definitions)
+        public IntergalacticCurrencyConverter(CurrencyDefinition definitions)
         {
             this.definitions = definitions;
         }
 
-        public string Convert(string unit)
+        public string ToRoman(string intergalacticAmount)
         {
-            if (!this.definitions.Contains(unit))
-            {
-                throw new AggregateException();
-            }
+            return String.Join(string.Empty, this.ConvertToRoman(intergalacticAmount));
+        }
 
-            return this.definitions[unit].ToString();
+        private IEnumerable<string> ConvertToRoman(string intergalacticAmount)
+        {
+            foreach (var unit in intergalacticAmount.Split(" "))
+            {
+                if (!this.definitions.Contains(unit))
+                {
+                    throw new AggregateException();
+                }
+
+                yield return this.definitions[unit].ToString();
+            }
         }
     }
 }
