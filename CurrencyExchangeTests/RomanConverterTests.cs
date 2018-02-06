@@ -41,5 +41,18 @@ namespace CurrencyExchangeTests
             Assert.AreEqual(400, RomanConverter.ToArabic("CD"));
             Assert.AreEqual(900, RomanConverter.ToArabic("CM"));
         }
+
+        [Test]
+        public void ConvertsSimpleRepetitions()
+        {
+            Assert.AreEqual(2, RomanConverter.ToArabic("II"));
+            Assert.AreEqual(3, RomanConverter.ToArabic("III"));
+            Assert.AreEqual(20, RomanConverter.ToArabic("XX"));
+            Assert.AreEqual(30, RomanConverter.ToArabic("XXX"));
+            Assert.AreEqual(200, RomanConverter.ToArabic("CC"));
+            Assert.AreEqual(300, RomanConverter.ToArabic("CCC"));
+            Assert.AreEqual(2000, RomanConverter.ToArabic("MM"));
+            Assert.AreEqual(3000, RomanConverter.ToArabic("MMM"));
+        }
     }
 }
