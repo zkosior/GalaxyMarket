@@ -78,6 +78,12 @@ namespace CurrencyExchangeTests
         {
             Assert.Throws<ArgumentException>(() => RomanConverter.ToArabic("MMCMDCCXCVIII"));
             Assert.Throws<ArgumentException>(() => RomanConverter.ToArabic("MMCDXLXIVII"));
+            Assert.Throws<ArgumentException>(() => RomanConverter.ToArabic("MMMCMMCXLIV"));
+            Assert.Throws<ArgumentException>(() => RomanConverter.ToArabic("CMCM"));
+            Assert.Throws<ArgumentException>(() => RomanConverter.ToArabic("IVII"));
+            Assert.Throws<ArgumentException>(() => RomanConverter.ToArabic("XLXIV"));
+            Assert.Throws<ArgumentException>(() => RomanConverter.ToArabic("IXV"));
+            Assert.Throws<ArgumentException>(() => RomanConverter.ToArabic("IXVII"));
         }
     }
 }
