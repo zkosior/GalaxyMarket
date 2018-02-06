@@ -1,8 +1,6 @@
 ﻿using CurrencyExchange;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CurrencyExchangeTests
 {
@@ -31,6 +29,17 @@ namespace CurrencyExchangeTests
         public void WhenCalledOnUnsupportedNumeral_Throws()
         {
             Assert.Throws<ArgumentException>(() => RomanConverter.ToArabic("W"));
+        }
+
+        [Test]
+        public void ConvertsAllSubtractedRomanToArabic()
+        {
+            Assert.AreEqual(4, RomanConverter.ToArabic("IV"));
+            Assert.AreEqual(9, RomanConverter.ToArabic("IX"));
+            Assert.AreEqual(40, RomanConverter.ToArabic("XL"));
+            Assert.AreEqual(90, RomanConverter.ToArabic("XC"));
+            Assert.AreEqual(400, RomanConverter.ToArabic("CD"));
+            Assert.AreEqual(900, RomanConverter.ToArabic("CM"));
         }
     }
 }

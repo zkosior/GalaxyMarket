@@ -6,15 +6,21 @@ namespace CurrencyExchange
     public class CurrencyDefinition
     {
         private readonly Dictionary<string, Roman> definitions = new Dictionary<string, Roman>();
+        private readonly List<Roman> whitelistedNumerals = new List<Roman> { Roman.I, Roman.V, Roman.X, Roman.L, Roman.C, Roman.D, Roman.M };
 
         public void AddDefinition(string unit, Roman definition)
         {
-            if (definitions.ContainsKey(unit))
+            if (!this.whitelistedNumerals.Contains(definition))
+            {
+                throw new AggregateException($"Not supported Roman Numeral: {definition}");
+            }
+
+            if (this.definitions.ContainsKey(unit))
             {
                 throw new AggregateException($"Intergalactic unit already registered: {unit}");
             }
 
-            if (definitions.ContainsValue(definition))
+            if (this.definitions.ContainsValue(definition))
             {
                 throw new AggregateException($"Roman numeral already registered: {definition}");
             }

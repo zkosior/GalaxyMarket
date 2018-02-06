@@ -61,5 +61,18 @@ namespace CurrencyExchangeTests
 
             Assert.Throws<AggregateException>(() => { var a = currencyDefinition["prok"]; });
         }
+
+        [Test]
+        public void CanRegisterOnlySingleDigitRomanNumerals()
+        {
+            var currencyDefinition = new CurrencyDefinition();
+
+            Assert.Throws<AggregateException>(() => currencyDefinition.AddDefinition("glob", Roman.IV));
+            Assert.Throws<AggregateException>(() => currencyDefinition.AddDefinition("glob", Roman.IX));
+            Assert.Throws<AggregateException>(() => currencyDefinition.AddDefinition("glob", Roman.XL));
+            Assert.Throws<AggregateException>(() => currencyDefinition.AddDefinition("glob", Roman.XC));
+            Assert.Throws<AggregateException>(() => currencyDefinition.AddDefinition("glob", Roman.CD));
+            Assert.Throws<AggregateException>(() => currencyDefinition.AddDefinition("glob", Roman.CM));
+        }
     }
 }
