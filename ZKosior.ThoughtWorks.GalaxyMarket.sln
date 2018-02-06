@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrencyExchangeTests", "Cu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CurrencyExchange", "CurrencyExchange\CurrencyExchange.csproj", "{ACAB8668-AAC9-4D5E-B916-C867502F2FB7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{BEF745AB-4D8F-45F6-A34D-C7D17A0EC459}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{ACAB8668-AAC9-4D5E-B916-C867502F2FB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACAB8668-AAC9-4D5E-B916-C867502F2FB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACAB8668-AAC9-4D5E-B916-C867502F2FB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEF745AB-4D8F-45F6-A34D-C7D17A0EC459}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEF745AB-4D8F-45F6-A34D-C7D17A0EC459}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEF745AB-4D8F-45F6-A34D-C7D17A0EC459}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEF745AB-4D8F-45F6-A34D-C7D17A0EC459}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
