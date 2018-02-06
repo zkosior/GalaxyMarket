@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace CurrencyExchange
 {
-    public class IntergalacticCurrencyConverter
+    public class UnitConverter
     {
-        private readonly CurrencyDefinition definitions;
+        private readonly SymbolDefinition definitions;
 
-        public IntergalacticCurrencyConverter(CurrencyDefinition definitions)
+        public UnitConverter(SymbolDefinition definitions)
         {
             this.definitions = definitions;
         }

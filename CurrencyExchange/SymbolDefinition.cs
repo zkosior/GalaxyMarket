@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CurrencyExchange
 {
-    public class CurrencyDefinition
+    public class SymbolDefinition
     {
         private readonly Dictionary<string, string> definitions = new Dictionary<string, string>();
         private readonly List<string> whitelistedNumerals = new List<string> { "I", "V", "X", "L", "C", "D", "M" };

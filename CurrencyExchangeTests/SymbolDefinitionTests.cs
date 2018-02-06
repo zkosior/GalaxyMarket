@@ -5,12 +5,12 @@ using System;
 namespace CurrencyExchangeTests
 {
     [TestFixture]
-    public class CurrencyDefinitionTests
+    public class SymbolDefinitionTests
     {
         [Test]
         public void WhenUnitDefinitionAdded_ConvertsToRoman()
         {
-            var currencyDefinition = new CurrencyDefinition();
+            var currencyDefinition = new SymbolDefinition();
             currencyDefinition.AddDefinition("glob", "I");
 
             Assert.AreEqual("I", currencyDefinition["glob"]);
@@ -19,7 +19,7 @@ namespace CurrencyExchangeTests
         [Test]
         public void WhenRomanNumeralValueAlreadyRegistered_Throws()
         {
-            var currencyDefinition = new CurrencyDefinition();
+            var currencyDefinition = new SymbolDefinition();
             currencyDefinition.AddDefinition("glob1", "I");
             Assert.Throws<AggregateException>(() => currencyDefinition.AddDefinition("glob2", "I"));
         }
@@ -27,7 +27,7 @@ namespace CurrencyExchangeTests
         [Test]
         public void WhenIntergalacticUnitAlreadyRegistered_Throws()
         {
-            var currencyDefinition = new CurrencyDefinition();
+            var currencyDefinition = new SymbolDefinition();
             currencyDefinition.AddDefinition("glob", "I");
             Assert.Throws<AggregateException>(() => currencyDefinition.AddDefinition("glob", "V"));
         }
@@ -35,7 +35,7 @@ namespace CurrencyExchangeTests
         [Test]
         public void CoversAllSimpleRomanNumerals()
         {
-            var currencyDefinition = new CurrencyDefinition();
+            var currencyDefinition = new SymbolDefinition();
             currencyDefinition.AddDefinition("glob", "I");
             currencyDefinition.AddDefinition("prok", "V");
             currencyDefinition.AddDefinition("pish", "X");
@@ -56,7 +56,7 @@ namespace CurrencyExchangeTests
         [Test]
         public void WhenUnitNotRegistered_Throws()
         {
-            var currencyDefinition = new CurrencyDefinition();
+            var currencyDefinition = new SymbolDefinition();
             currencyDefinition.AddDefinition("glob", "I");
 
             Assert.Throws<AggregateException>(() => { var a = currencyDefinition["prok"]; });
