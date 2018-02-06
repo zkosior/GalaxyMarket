@@ -21,7 +21,7 @@ namespace CurrencyExchangeTests
         {
             var currencyDefinition = new CurrencyDefinition();
             currencyDefinition.AddDefinition("glob1", Roman.I);
-            Assert.Throws<InvalidOperationException>(() => currencyDefinition.AddDefinition("glob2", Roman.I));
+            Assert.Throws<AggregateException>(() => currencyDefinition.AddDefinition("glob2", Roman.I));
         }
 
         [Test]
@@ -29,7 +29,7 @@ namespace CurrencyExchangeTests
         {
             var currencyDefinition = new CurrencyDefinition();
             currencyDefinition.AddDefinition("glob", Roman.I);
-            Assert.Throws<InvalidOperationException>(() => currencyDefinition.AddDefinition("glob", Roman.V));
+            Assert.Throws<AggregateException>(() => currencyDefinition.AddDefinition("glob", Roman.V));
         }
 
         [Test]
@@ -59,7 +59,7 @@ namespace CurrencyExchangeTests
             var currencyDefinition = new CurrencyDefinition();
             currencyDefinition.AddDefinition("glob", Roman.I);
 
-            Assert.Throws<InvalidOperationException>(() => { var a = currencyDefinition["prok"]; });
+            Assert.Throws<AggregateException>(() => { var a = currencyDefinition["prok"]; });
         }
     }
 }
