@@ -28,6 +28,13 @@ namespace CurrencyExchangeTests
             Assert.Throws<AggregateException>(() => new IntergalacticCurrencyConverter(definitions).ToArabic("asdf"));
         }
 
+        [Test]
+        public void ConvertsComplexIntergalacticUnitToArabicNumeral_ExampleFromInstrunctions()
+        {
+            var definitions = InitializeDefinitions();
+            Assert.AreEqual(42, new IntergalacticCurrencyConverter(definitions).ToArabic("pish tegj glob glob"));
+        }
+
         private CurrencyDefinition InitializeDefinitions()
         {
             var definitions = new CurrencyDefinition();
