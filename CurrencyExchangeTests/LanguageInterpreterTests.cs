@@ -1,8 +1,6 @@
 ﻿using CurrencyExchange;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CurrencyExchangeTests
 {
@@ -13,6 +11,14 @@ namespace CurrencyExchangeTests
         public void UnitDeclaration_DoesntProduceOutput()
         {
             Assert.IsNull(new LanguageInterpreter().Add("glob is I"));
+        }
+
+        [Test]
+        public void AddingCommodity_DoesntProduceOutput()
+        {
+            var interpreter = new LanguageInterpreter();
+            interpreter.Add("glob is I");
+            Assert.IsNull(interpreter.Add("glob glob Silver is 34 Credits"));
         }
 
         [Test]
@@ -61,6 +67,16 @@ namespace CurrencyExchangeTests
             Assert.AreEqual("glob prok Gold is 57800 Credits", interpreter.Add("how many Credits is glob prok Gold ?"));
             Assert.AreEqual("glob prok Iron is 782 Credits", interpreter.Add("how many Credits is glob prok Iron ?"));
             Assert.AreEqual("I have no idea what you are talking about", interpreter.Add("how much wood could a woodchuck chuck if a woodchuck could chuck wood ?"));
+        }
+
+        [Test]
+        public void WhenInputIsNullOrEmpty_Throws()
+        {
+            var interpreter = new LanguageInterpreter();
+
+            Assert.Throws<ArgumentNullException>(() => interpreter.Add(null));
+            Assert.Throws<ArgumentNullException>(() => interpreter.Add(string.Empty));
+            Assert.Throws<ArgumentNullException>(() => interpreter.Add(" "));
         }
 
         private void InitializeSymbols(LanguageInterpreter interpreter)
