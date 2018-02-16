@@ -1,6 +1,6 @@
 ﻿namespace ZKosior.ThoughtWotks.GalaxyMarket.CurrencyExchange
 {
-    public class QueryIntergalacticConversion
+    public class QueryIntergalacticConversion : ILanguageHandler
     {
         private UnitConverter Converter { get; }
 

@@ -1,20 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ZKosior.ThoughtWotks.GalaxyMarket.CurrencyExchange
 {
     public class LanguageInterpreter
     {
-        private SymbolDefinition Definitions { get; }
+        private IEnumerable<ILanguageHandler> handlers;
 
-        private UnitConverter Converter { get; }
-
-        private CommonMarket Market { get; }
-
-        public LanguageInterpreter(SymbolDefinition definitions, UnitConverter converter, CommonMarket market)
+        public LanguageInterpreter(IEnumerable<ILanguageHandler> handlers)
         {
-            this.Definitions = definitions;
-            this.Converter = converter;
-            this.Market = market;
+            this.handlers = handlers;
         }
 
         public string Add(string line)
@@ -22,13 +17,12 @@ namespace ZKosior.ThoughtWotks.GalaxyMarket.CurrencyExchange
             if (string.IsNullOrWhiteSpace(line))
                 throw new ArgumentNullException($"{nameof(line)}");
 
-            if (new QueryIntergalacticConversion(this.Converter).TryHandle(line, out var output) ||
-                new QueryCommodityPrice(this.Market).TryHandle(line, out output) ||
-                new QueryComodityConversion(this.Converter, this.Market).TryHandle(line, out output) ||
-                new DeclareIntergalacticUnits(this.Definitions).TryHandle(line, out output) ||
-                new DeclareCommoditiesPriceInCredits(this.Market).TryHandle(line, out output))
+            foreach (var handler in this.handlers)
             {
-                return output;
+                if (handler.TryHandle(line, out var output))
+                {
+                    return output;
+                }
             }
 
             return "I have no idea what you are talking about";

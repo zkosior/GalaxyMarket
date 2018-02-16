@@ -15,9 +15,15 @@ namespace ZKosior.ThoughtWorks.GalaxyMarket.CurrencyExchange
         private static void RegisterDependencies(Container container)
         {
             container.Register<LanguageInterpreter>();
-            container.Register<CommonMarket>();
+            container.Register<CommonMarket>(Reuse.Singleton);
             container.Register<UnitConverter>();
             container.Register<SymbolDefinition>(Reuse.Singleton);
+
+            container.Register<ILanguageHandler, QueryIntergalacticConversion>();
+            container.Register<ILanguageHandler, QueryCommodityPrice>();
+            container.Register<ILanguageHandler, QueryComodityConversion>();
+            container.Register<ILanguageHandler, DeclareIntergalacticUnits>();
+            container.Register<ILanguageHandler, DeclareCommoditiesPriceInCredits>();
         }
     }
 }

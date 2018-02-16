@@ -2,7 +2,7 @@
 
 namespace ZKosior.ThoughtWotks.GalaxyMarket.CurrencyExchange
 {
-    public class QueryCommodityPrice
+    public class QueryCommodityPrice : ILanguageHandler
     {
         private CommonMarket Market { get; }
 

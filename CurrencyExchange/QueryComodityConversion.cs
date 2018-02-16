@@ -2,7 +2,7 @@
 
 namespace ZKosior.ThoughtWotks.GalaxyMarket.CurrencyExchange
 {
-    public class QueryComodityConversion
+    public class QueryComodityConversion : ILanguageHandler
     {
         private UnitConverter Converter { get; }
 

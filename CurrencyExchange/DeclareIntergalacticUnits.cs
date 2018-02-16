@@ -1,6 +1,6 @@
 ﻿namespace ZKosior.ThoughtWotks.GalaxyMarket.CurrencyExchange
 {
-    public class DeclareIntergalacticUnits
+    public class DeclareIntergalacticUnits : ILanguageHandler
     {
         private SymbolDefinition Definitions { get; }
 
