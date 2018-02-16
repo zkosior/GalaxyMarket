@@ -4,14 +4,17 @@ namespace ZKosior.ThoughtWotks.GalaxyMarket.CurrencyExchange
 {
     public class LanguageInterpreter
     {
-        private readonly SymbolDefinition definitions = new SymbolDefinition();
-        private readonly UnitConverter converter;
-        private readonly CommonMarket market;
+        private SymbolDefinition Definitions { get; }
 
-        public LanguageInterpreter()
+        private UnitConverter Converter { get; }
+
+        private CommonMarket Market { get; }
+
+        public LanguageInterpreter(SymbolDefinition definitions, UnitConverter converter, CommonMarket market)
         {
-            this.converter = new UnitConverter(definitions);
-            this.market = new CommonMarket(converter);
+            this.Definitions = definitions;
+            this.Converter = converter;
+            this.Market = market;
         }
 
         public string Add(string line)
@@ -19,11 +22,11 @@ namespace ZKosior.ThoughtWotks.GalaxyMarket.CurrencyExchange
             if (string.IsNullOrWhiteSpace(line))
                 throw new ArgumentNullException($"{nameof(line)}");
 
-            if (new QueryIntergalacticConversion(this.converter).TryHandle(line, out var output) ||
-                new QueryCommodityPrice(this.market).TryHandle(line, out output) ||
-                new QueryComodityConversion(this.converter, this.market).TryHandle(line, out output) ||
-                new DeclareIntergalacticUnits(this.definitions).TryHandle(line, out output) ||
-                new DeclareCommoditiesPriceInCredits(this.market).TryHandle(line, out output))
+            if (new QueryIntergalacticConversion(this.Converter).TryHandle(line, out var output) ||
+                new QueryCommodityPrice(this.Market).TryHandle(line, out output) ||
+                new QueryComodityConversion(this.Converter, this.Market).TryHandle(line, out output) ||
+                new DeclareIntergalacticUnits(this.Definitions).TryHandle(line, out output) ||
+                new DeclareCommoditiesPriceInCredits(this.Market).TryHandle(line, out output))
             {
                 return output;
             }

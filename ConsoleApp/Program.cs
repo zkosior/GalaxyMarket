@@ -1,5 +1,7 @@
-﻿using System;
+﻿using DryIoc;
+using System;
 using System.IO;
+using ZKosior.ThoughtWorks.GalaxyMarket.CurrencyExchange;
 using ZKosior.ThoughtWotks.GalaxyMarket.CurrencyExchange;
 
 namespace ZKosior.ThoughtWotks.GalaxyMarket.ConsoleApp
@@ -15,7 +17,7 @@ namespace ZKosior.ThoughtWotks.GalaxyMarket.ConsoleApp
                     using (var input = new StreamReader(InputFile.OpenRead()))
                     using (var output = new StreamWriter(OutputFile.OpenWrite()))
                     {
-                        var interpreter = new LanguageInterpreter();
+                        var interpreter = IoCInitialization.InitiateIoc().Resolve<LanguageInterpreter>();// new LanguageInterpreter();
                         while (!input.EndOfStream)
                         {
                             var inputLine = input.ReadLine();

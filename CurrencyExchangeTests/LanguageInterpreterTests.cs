@@ -1,5 +1,7 @@
-﻿using NUnit.Framework;
+﻿using DryIoc;
+using NUnit.Framework;
 using System;
+using ZKosior.ThoughtWorks.GalaxyMarket.CurrencyExchange;
 using ZKosior.ThoughtWotks.GalaxyMarket.CurrencyExchange;
 
 namespace ZKosior.ThoughtWotks.GalaxyMarket.CurrencyExchangeTests
@@ -10,13 +12,14 @@ namespace ZKosior.ThoughtWotks.GalaxyMarket.CurrencyExchangeTests
         [Test]
         public void UnitDeclaration_DoesntProduceOutput()
         {
-            Assert.IsNull(new LanguageInterpreter().Add("glob is I"));
+            var interpreter = IoCInitialization.InitiateIoc().Resolve<LanguageInterpreter>();
+            Assert.IsNull(interpreter.Add("glob is I"));
         }
 
         [Test]
         public void AddingCommodity_DoesntProduceOutput()
         {
-            var interpreter = new LanguageInterpreter();
+            var interpreter = IoCInitialization.InitiateIoc().Resolve<LanguageInterpreter>();
             interpreter.Add("glob is I");
             Assert.IsNull(interpreter.Add("glob glob Silver is 34 Credits"));
         }
@@ -24,7 +27,7 @@ namespace ZKosior.ThoughtWotks.GalaxyMarket.CurrencyExchangeTests
         [Test]
         public void QueryingForArabic_ReturnsConversionsBasedOnRegisteredSymbols()
         {
-            var interpreter = new LanguageInterpreter();
+            var interpreter = IoCInitialization.InitiateIoc().Resolve<LanguageInterpreter>();
             this.InitializeSymbols(interpreter);
 
             Assert.AreEqual("pish tegj glob glob is 42", interpreter.Add("how much is pish tegj glob glob ?"));
@@ -33,7 +36,7 @@ namespace ZKosior.ThoughtWotks.GalaxyMarket.CurrencyExchangeTests
         [Test]
         public void QueryingForCommodity_ReturnsPriceOfChosenAmountOfSelectedProduct()
         {
-            var interpreter = new LanguageInterpreter();
+            var interpreter = IoCInitialization.InitiateIoc().Resolve<LanguageInterpreter>();
             this.InitializeSymbols(interpreter);
             this.InitializeCommodities(interpreter);
 
@@ -43,7 +46,7 @@ namespace ZKosior.ThoughtWotks.GalaxyMarket.CurrencyExchangeTests
         [Test]
         public void UnknownQuery_ReceivesDefaultResponse()
         {
-            var interpreter = new LanguageInterpreter();
+            var interpreter = IoCInitialization.InitiateIoc().Resolve<LanguageInterpreter>();
 
             Assert.AreEqual("I have no idea what you are talking about", interpreter.Add("how much wood could a woodchuck chuck if a woodchuck could chuck wood ?"));
         }
@@ -51,7 +54,7 @@ namespace ZKosior.ThoughtWotks.GalaxyMarket.CurrencyExchangeTests
         [Test]
         public void TestFromInstructions()
         {
-            var interpreter = new LanguageInterpreter();
+            var interpreter = IoCInitialization.InitiateIoc().Resolve<LanguageInterpreter>();
 
             interpreter.Add("glob is I");
             interpreter.Add("prok is V");
@@ -72,7 +75,7 @@ namespace ZKosior.ThoughtWotks.GalaxyMarket.CurrencyExchangeTests
         [Test]
         public void WhenInputIsNullOrEmpty_Throws()
         {
-            var interpreter = new LanguageInterpreter();
+            var interpreter = IoCInitialization.InitiateIoc().Resolve<LanguageInterpreter>();
 
             Assert.Throws<ArgumentNullException>(() => interpreter.Add(null));
             Assert.Throws<ArgumentNullException>(() => interpreter.Add(string.Empty));
@@ -82,7 +85,7 @@ namespace ZKosior.ThoughtWotks.GalaxyMarket.CurrencyExchangeTests
         [Test]
         public void QueryForCommodityConversion_ConvertsOneToTheOther()
         {
-            var interpreter = new LanguageInterpreter();
+            var interpreter = IoCInitialization.InitiateIoc().Resolve<LanguageInterpreter>();
             interpreter.Add("prok is V");
             interpreter.Add("glob is I");
             interpreter.Add("glob glob Silver is 34 Credits");

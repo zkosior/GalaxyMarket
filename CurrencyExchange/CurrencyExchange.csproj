@@ -6,4 +6,8 @@
     <RootNamespace>ZKosior.ThoughtWorks.GalaxyMarket.CurrencyExchange</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="DryIoc.dll" Version="2.12.7" />
+  </ItemGroup>
+
 </Project>
