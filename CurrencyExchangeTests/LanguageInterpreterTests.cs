@@ -79,6 +79,18 @@ namespace ZKosior.ThoughtWotks.GalaxyMarket.CurrencyExchangeTests
             Assert.Throws<ArgumentNullException>(() => interpreter.Add(" "));
         }
 
+        [Test]
+        public void QueryForCommodityConversion_ConvertsOneToTheOther()
+        {
+            var interpreter = new LanguageInterpreter();
+            interpreter.Add("prok is V");
+            interpreter.Add("glob is I");
+            interpreter.Add("glob glob Silver is 34 Credits");
+            interpreter.Add("glob prok Gold is 57800 Credits");
+
+            Assert.AreEqual("glob Gold is 850 Silver", interpreter.Add("how many Silver is glob Gold ?"));
+        }
+
         private void InitializeSymbols(LanguageInterpreter interpreter)
         {
             interpreter.Add("glob is I");
