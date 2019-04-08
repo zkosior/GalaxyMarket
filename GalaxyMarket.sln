@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrencyExchangeTests", "CurrencyExchangeTests\CurrencyExchangeTests.csproj", "{8A27AB6F-234F-4A23-B5AA-E53A7BDA4A43}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrencyExchangeTests", "test\CurrencyExchangeTests\CurrencyExchangeTests.csproj", "{8A27AB6F-234F-4A23-B5AA-E53A7BDA4A43}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CurrencyExchange", "CurrencyExchange\CurrencyExchange.csproj", "{ACAB8668-AAC9-4D5E-B916-C867502F2FB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CurrencyExchange", "src\CurrencyExchange\CurrencyExchange.csproj", "{ACAB8668-AAC9-4D5E-B916-C867502F2FB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{BEF745AB-4D8F-45F6-A34D-C7D17A0EC459}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "src\ConsoleApp\ConsoleApp.csproj", "{BEF745AB-4D8F-45F6-A34D-C7D17A0EC459}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
