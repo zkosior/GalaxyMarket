@@ -1,15 +1,16 @@
-namespace GalaxyMarket.CurrencyExchange
+namespace GalaxyMarket.CurrencyExchange.Handlers
 {
+	using GalaxyMarket.CurrencyExchange.Market;
 	using System.Linq;
 
 	public class DeclareCommoditiesPriceInCredits : ILanguageHandler
 	{
+		private readonly CommonMarket market;
+
 		public DeclareCommoditiesPriceInCredits(CommonMarket market)
 		{
-			this.Market = market;
+			this.market = market;
 		}
-
-		private CommonMarket Market { get; }
 
 		public bool TryHandle(string input, out string output)
 		{
@@ -24,7 +25,7 @@ namespace GalaxyMarket.CurrencyExchange
 					{
 						if (int.TryParse(secondPart[0], out var price))
 						{
-							this.Market.Add(
+							this.market.Add(
 								commodity,
 								components[0].Replace(
 									commodity,

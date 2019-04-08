@@ -1,6 +1,6 @@
 namespace GalaxyMarket.CurrencyExchangeTests
 {
-	using GalaxyMarket.CurrencyExchange;
+	using GalaxyMarket.CurrencyExchange.Converters;
 	using NUnit.Framework;
 	using System;
 

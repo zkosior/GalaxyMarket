@@ -1,6 +1,6 @@
 namespace GalaxyMarket.CurrencyExchangeTests
 {
-	using GalaxyMarket.CurrencyExchange;
+	using GalaxyMarket.CurrencyExchange.Market;
 	using NUnit.Framework;
 	using System;
 
@@ -21,7 +21,8 @@ namespace GalaxyMarket.CurrencyExchangeTests
 		{
 			var currencyDefinition = new SymbolDefinition();
 			currencyDefinition.AddDefinition("glob1", "I");
-			Assert.Throws<ArgumentException>(() => currencyDefinition.AddDefinition("glob2", "I"));
+			Assert.Throws<ArgumentException>(
+				() => currencyDefinition.AddDefinition("glob2", "I"));
 		}
 
 		[Test]
@@ -29,7 +30,8 @@ namespace GalaxyMarket.CurrencyExchangeTests
 		{
 			var currencyDefinition = new SymbolDefinition();
 			currencyDefinition.AddDefinition("glob", "I");
-			Assert.Throws<ArgumentException>(() => currencyDefinition.AddDefinition("glob", "V"));
+			Assert.Throws<ArgumentException>(
+				() => currencyDefinition.AddDefinition("glob", "V"));
 		}
 
 		[Test]
@@ -59,7 +61,8 @@ namespace GalaxyMarket.CurrencyExchangeTests
 			var currencyDefinition = new SymbolDefinition();
 			currencyDefinition.AddDefinition("glob", "I");
 
-			Assert.Throws<ArgumentException>(() => { var a = currencyDefinition["prok"]; });
+			Assert.Throws<ArgumentException>(
+				() => { var a = currencyDefinition["prok"]; });
 		}
 	}
 }

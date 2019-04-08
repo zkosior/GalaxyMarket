@@ -1,4 +1,4 @@
-namespace GalaxyMarket.CurrencyExchange
+namespace GalaxyMarket.CurrencyExchange.Handlers
 {
 	public interface ILanguageHandler
 	{

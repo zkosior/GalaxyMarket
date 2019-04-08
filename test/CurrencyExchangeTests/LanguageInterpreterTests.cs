@@ -1,22 +1,22 @@
 namespace GalaxyMarket.CurrencyExchangeTests
 {
-	using System;
 	using DryIoc;
 	using GalaxyMarket.CurrencyExchange;
 	using NUnit.Framework;
+	using System;
 
 	[TestFixture]
 	public class LanguageInterpreterTests
 	{
 		[Test]
-		public void UnitDeclaration_DoesntProduceOutput()
+		public void UnitDeclaration_DoesNotProduceOutput()
 		{
 			var interpreter = IoCInitialization.InitiateIoc().Resolve<LanguageInterpreter>();
 			Assert.IsNull(interpreter.Add("glob is I"));
 		}
 
 		[Test]
-		public void AddingCommodity_DoesntProduceOutput()
+		public void AddingCommodity_DoesNotProduceOutput()
 		{
 			var interpreter = IoCInitialization.InitiateIoc().Resolve<LanguageInterpreter>();
 			interpreter.Add("glob is I");
@@ -27,7 +27,7 @@ namespace GalaxyMarket.CurrencyExchangeTests
 		public void QueryingForArabic_ReturnsConversionsBasedOnRegisteredSymbols()
 		{
 			var interpreter = IoCInitialization.InitiateIoc().Resolve<LanguageInterpreter>();
-			this.InitializeSymbols(interpreter);
+			InitializeSymbols(interpreter);
 
 			Assert.AreEqual("pish tegj glob glob is 42", interpreter.Add("how much is pish tegj glob glob ?"));
 		}
@@ -36,8 +36,8 @@ namespace GalaxyMarket.CurrencyExchangeTests
 		public void QueryingForCommodity_ReturnsPriceOfChosenAmountOfSelectedProduct()
 		{
 			var interpreter = IoCInitialization.InitiateIoc().Resolve<LanguageInterpreter>();
-			this.InitializeSymbols(interpreter);
-			this.InitializeCommodities(interpreter);
+			InitializeSymbols(interpreter);
+			InitializeCommodities(interpreter);
 
 			Assert.AreEqual("glob prok Silver is 68 Credits", interpreter.Add("how many Credits is glob prok Silver ?"));
 		}
@@ -93,7 +93,7 @@ namespace GalaxyMarket.CurrencyExchangeTests
 			Assert.AreEqual("glob Gold is 850 Silver", interpreter.Add("how many Silver is glob Gold ?"));
 		}
 
-		private void InitializeSymbols(LanguageInterpreter interpreter)
+		private static void InitializeSymbols(LanguageInterpreter interpreter)
 		{
 			interpreter.Add("glob is I");
 			interpreter.Add("prok is V");
@@ -101,7 +101,7 @@ namespace GalaxyMarket.CurrencyExchangeTests
 			interpreter.Add("tegj is L");
 		}
 
-		private void InitializeCommodities(LanguageInterpreter interpreter)
+		private static void InitializeCommodities(LanguageInterpreter interpreter)
 		{
 			interpreter.Add("glob glob Silver is 34 Credits");
 			interpreter.Add("glob prok Gold is 57800 Credits");

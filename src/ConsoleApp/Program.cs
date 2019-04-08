@@ -72,7 +72,10 @@ namespace GalaxyMarket.ConsoleApp
 		{
 			return args.Length > 1
 				? args[1]
-				: args[0].Replace(".txt", "_output.txt", StringComparison.InvariantCultureIgnoreCase);
+				: args[0].Replace(
+					".txt",
+					"_output.txt",
+					StringComparison.InvariantCultureIgnoreCase);
 		}
 	}
 }

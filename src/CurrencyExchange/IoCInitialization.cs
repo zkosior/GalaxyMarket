@@ -1,13 +1,16 @@
-namespace GalaxyMarket.CurrencyExchange
+﻿namespace GalaxyMarket.CurrencyExchange
 {
 	using DryIoc;
-	using GalaxyMarket.CurrencyExchange;
+	using GalaxyMarket.CurrencyExchange.Converters;
+	using GalaxyMarket.CurrencyExchange.Handlers;
+	using GalaxyMarket.CurrencyExchange.Market;
 
 	public static class IoCInitialization
 	{
 		public static Container InitiateIoc()
 		{
-			var container = new Container(rules => rules.WithTrackingDisposableTransients());
+			var container = new Container(
+				rules => rules.WithTrackingDisposableTransients());
 			RegisterDependencies(container);
 			return container;
 		}
@@ -21,7 +24,7 @@ namespace GalaxyMarket.CurrencyExchange
 
 			container.Register<ILanguageHandler, QueryIntergalacticConversion>();
 			container.Register<ILanguageHandler, QueryCommodityPrice>();
-			container.Register<ILanguageHandler, QueryComodityConversion>();
+			container.Register<ILanguageHandler, QueryCommodityConversion>();
 			container.Register<ILanguageHandler, DeclareIntergalacticUnits>();
 			container.Register<ILanguageHandler, DeclareCommoditiesPriceInCredits>();
 		}

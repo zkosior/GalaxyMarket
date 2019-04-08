@@ -1,5 +1,6 @@
-namespace GalaxyMarket.CurrencyExchange
+namespace GalaxyMarket.CurrencyExchange.Converters
 {
+	using GalaxyMarket.CurrencyExchange.Market;
 	using System;
 	using System.Collections.Generic;
 
