@@ -1,6 +1,5 @@
 namespace GalaxyMarket.CurrencyExchange.Market
 {
-	using GalaxyMarket.CurrencyExchange.Converters;
 	using System.Collections.Generic;
 
 	public class CommonMarket
@@ -8,23 +7,14 @@ namespace GalaxyMarket.CurrencyExchange.Market
 		private readonly Dictionary<string, decimal> commodities =
 			new Dictionary<string, decimal>();
 
-		private readonly UnitConverter unitConverter;
-
-		public CommonMarket(UnitConverter unitConverter)
+		public void Add(string commodity, int amount, decimal price)
 		{
-			this.unitConverter = unitConverter;
+			this.commodities.Add(commodity, price / amount);
 		}
 
-		public void Add(string commodity, string amount, decimal price)
+		public decimal Query(string commodity, int amount)
 		{
-			this.commodities.Add(
-				commodity,
-				price / this.unitConverter.ToArabic(amount));
-		}
-
-		public decimal Query(string commodity, string amount)
-		{
-			return this.commodities[commodity] * this.unitConverter.ToArabic(amount);
+			return this.commodities[commodity] * amount;
 		}
 	}
 }

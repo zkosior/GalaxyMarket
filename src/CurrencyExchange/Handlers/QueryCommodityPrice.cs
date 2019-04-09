@@ -1,15 +1,20 @@
 namespace GalaxyMarket.CurrencyExchange.Handlers
 {
+	using GalaxyMarket.CurrencyExchange.Converters;
 	using GalaxyMarket.CurrencyExchange.Market;
 	using System.Linq;
 
 	public class QueryCommodityPrice : ILanguageHandler
 	{
 		private readonly CommonMarket market;
+		private readonly UnitConverter converter;
 
-		public QueryCommodityPrice(CommonMarket market)
+		public QueryCommodityPrice(
+			CommonMarket market,
+			UnitConverter converter)
 		{
 			this.market = market;
+			this.converter = converter;
 		}
 
 		public bool TryHandle(string input, out string output)
@@ -24,7 +29,7 @@ namespace GalaxyMarket.CurrencyExchange.Handlers
 						commodity,
 						string.Empty,
 						System.StringComparison.CurrentCultureIgnoreCase).TrimEnd();
-					output = $"{amount} {commodity} is {this.market.Query(commodity, amount):0.#} Credits";
+					output = $"{amount} {commodity} is {this.market.Query(commodity, this.converter.ToArabic(amount)):0.#} Credits";
 					return true;
 				}
 			}
