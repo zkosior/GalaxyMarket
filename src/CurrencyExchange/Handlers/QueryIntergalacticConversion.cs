@@ -13,15 +13,28 @@ namespace GalaxyMarket.CurrencyExchange.Handlers
 
 		public bool TryHandle(string input, out string output)
 		{
+			var amount = ParseInputData(input);
+			if (string.IsNullOrWhiteSpace(amount))
+			{
+				output = string.Empty;
+				return false;
+			}
+
+			var arabicAmount = this.converter.ToArabic(amount);
+
+			output = $"{amount} is {arabicAmount}";
+			return true;
+		}
+
+		private static string ParseInputData(string input)
+		{
 			var components = input.TrimEnd('?', ' ').Split(" is ");
 			if (components.Length == 2 && components[0] == "how much")
 			{
-				output = $"{components[1]} is {this.converter.ToArabic(components[1])}";
-				return true;
+				return components[1];
 			}
 
-			output = string.Empty;
-			return false;
+			return null;
 		}
 	}
 }

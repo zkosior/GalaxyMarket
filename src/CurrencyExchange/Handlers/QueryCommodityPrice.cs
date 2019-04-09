@@ -20,6 +20,25 @@ namespace GalaxyMarket.CurrencyExchange.Handlers
 
 		public bool TryHandle(string input, out string output)
 		{
+			(string commodity, string amount) = ParseInputData(input);
+			if (string.IsNullOrWhiteSpace(commodity) ||
+				string.IsNullOrWhiteSpace(amount))
+			{
+				output = string.Empty;
+				return false;
+			}
+
+			var commodityPrice = this.market.Query(commodity, this.converter.ToArabic(amount));
+
+			output = $"{amount} {commodity} is {commodityPrice:0.#} Credits";
+			return true;
+		}
+
+#pragma warning disable SA1008 // Opening parenthesis must be spaced correctly
+
+		private static (string comodity, string amount) ParseInputData(string input)
+#pragma warning restore SA1008 // Opening parenthesis must be spaced correctly
+		{
 			var components = input.TrimEnd('?', ' ').Split(" is ");
 			if (components.Length == 2 && components[0] == "how many Credits")
 			{
@@ -30,13 +49,12 @@ namespace GalaxyMarket.CurrencyExchange.Handlers
 						commodity,
 						string.Empty,
 						StringComparison.InvariantCultureIgnoreCase).TrimEnd();
-					output = $"{amount} {commodity} is {this.market.Query(commodity, this.converter.ToArabic(amount)):0.#} Credits";
-					return true;
+
+					return (commodity, amount);
 				}
 			}
 
-			output = string.Empty;
-			return false;
+			return (null, null);
 		}
 	}
 }

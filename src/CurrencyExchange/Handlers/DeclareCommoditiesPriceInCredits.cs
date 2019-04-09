@@ -20,6 +20,28 @@ namespace GalaxyMarket.CurrencyExchange.Handlers
 
 		public bool TryHandle(string input, out string output)
 		{
+			output = null;
+			(string commodity, string amount, int? price) = ParseInputData(input);
+			if (string.IsNullOrWhiteSpace(commodity) ||
+				string.IsNullOrWhiteSpace(amount) ||
+				!price.HasValue)
+			{
+				return false;
+			}
+
+			this.market.Add(
+				commodity,
+				this.converter.ToArabic(amount),
+				price.Value);
+
+			return true;
+		}
+
+#pragma warning disable SA1008 // Opening parenthesis must be spaced correctly
+
+		private static (string commodity, string amount, int? price) ParseInputData(string input)
+#pragma warning restore SA1008 // Opening parenthesis must be spaced correctly
+		{
 			var components = input.TrimEnd('?', ' ').Split(" is ");
 			if (components.Length == 2)
 			{
@@ -31,23 +53,18 @@ namespace GalaxyMarket.CurrencyExchange.Handlers
 					{
 						if (int.TryParse(secondPart[0], out var price))
 						{
-							this.market.Add(
-								commodity,
-								this.converter.ToArabic(
+							return (commodity,
 									components[0].Replace(
 										commodity,
 										string.Empty,
-										StringComparison.InvariantCultureIgnoreCase).Trim()),
-								price);
-							output = null;
-							return true;
+										StringComparison.InvariantCultureIgnoreCase).Trim(),
+									price);
 						}
 					}
 				}
 			}
 
-			output = null;
-			return false;
+			return (null, null, null);
 		}
 	}
 }
