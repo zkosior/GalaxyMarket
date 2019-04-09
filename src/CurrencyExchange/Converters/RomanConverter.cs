@@ -37,14 +37,14 @@ namespace GalaxyMarket.CurrencyExchange.Converters
 			var result = 0;
 			var romanToConvert = romanAmount;
 
-			foreach (var romanDefinition in RomanNumerals)
+			foreach ((string symbol, int value) in RomanNumerals)
 			{
 				while (romanToConvert.StartsWith(
-					romanDefinition.Key,
+					symbol,
 					StringComparison.CurrentCultureIgnoreCase))
 				{
-					result += romanDefinition.Value;
-					romanToConvert = romanToConvert.Substring(romanDefinition.Key.Length);
+					result += value;
+					romanToConvert = romanToConvert.Substring(symbol.Length);
 				}
 			}
 
@@ -70,14 +70,16 @@ namespace GalaxyMarket.CurrencyExchange.Converters
 
 		private static void CheckUpToThree(string romanDigits, char digit)
 		{
-			if (romanDigits.Count(c => c == digit) > 3) throw new ArgumentException($"Too many Roman digits: {digit}");
+			if (romanDigits.Count(c => c == digit) > 3)
+				throw new ArgumentException($"Too many Roman digits: {digit}");
 		}
 
 		private static void CheckSingle(string romanDigits, string special, string contra)
 		{
 			var ds = romanDigits.Split(special);
 			if (ds.Length > 2) throw new ArgumentException($"Too many Roman digits: {special}");
-			if (ds.Length == 2 && romanDigits.Contains(
+			if (ds.Length == 2 &&
+				romanDigits.Contains(
 					contra,
 					StringComparison.CurrentCultureIgnoreCase))
 				throw new ArgumentException($"Incorrect combination: {contra}+{special}");

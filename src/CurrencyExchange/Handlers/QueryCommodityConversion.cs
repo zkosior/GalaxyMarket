@@ -10,10 +10,12 @@ namespace GalaxyMarket.CurrencyExchange.Handlers
 
 		private readonly CommonMarket market;
 
-		public QueryCommodityConversion(UnitConverter converter, CommonMarket market)
+		public QueryCommodityConversion(
+			CommonMarket market,
+			UnitConverter converter)
 		{
-			this.converter = converter;
 			this.market = market;
+			this.converter = converter;
 		}
 
 		public bool TryHandle(string input, out string output)
@@ -29,9 +31,14 @@ namespace GalaxyMarket.CurrencyExchange.Handlers
 				var commodity2Definition = commodity2Split.Last();
 
 				var commodity1Arabic = this.converter.ToArabic(commodity2Amount);
-				var commodity2Price = this.market.Query(commodity2Definition, this.converter.ToArabic(commodity2Amount));
+				var commodity2Price = this.market.Query(
+										commodity2Definition,
+										this.converter.ToArabic(commodity2Amount));
 
-				var commodity1UnitPrice = this.market.Query(commodity1, this.converter.ToArabic(commodity2Amount)) / commodity1Arabic;
+				var commodity1UnitPrice = this.market.Query(
+											  commodity1,
+											  this.converter.ToArabic(commodity2Amount))
+										  / commodity1Arabic;
 
 				output = $"{commodity2Amount} {commodity2Definition} is {commodity2Price / commodity1UnitPrice:0.#} {commodity1}";
 				return true;

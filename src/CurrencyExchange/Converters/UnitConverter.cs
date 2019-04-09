@@ -29,7 +29,7 @@ namespace GalaxyMarket.CurrencyExchange.Converters
 			{
 				if (!this.definitions.Contains(unit))
 				{
-					throw new AggregateException();
+					throw new ArgumentException($"Not registered symbol: {nameof(intergalacticAmount)}");
 				}
 
 				yield return this.definitions[unit];

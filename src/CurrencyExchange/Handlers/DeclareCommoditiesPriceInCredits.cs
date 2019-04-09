@@ -2,6 +2,7 @@ namespace GalaxyMarket.CurrencyExchange.Handlers
 {
 	using GalaxyMarket.CurrencyExchange.Converters;
 	using GalaxyMarket.CurrencyExchange.Market;
+	using System;
 	using System.Linq;
 
 	public class DeclareCommoditiesPriceInCredits : ILanguageHandler
@@ -36,7 +37,7 @@ namespace GalaxyMarket.CurrencyExchange.Handlers
 									components[0].Replace(
 										commodity,
 										string.Empty,
-										System.StringComparison.CurrentCultureIgnoreCase).Trim()),
+										StringComparison.CurrentCultureIgnoreCase).Trim()),
 								price);
 							output = null;
 							return true;

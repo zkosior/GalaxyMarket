@@ -28,7 +28,7 @@ namespace GalaxyMarket.CurrencyExchangeTests
 		public void WhenIntergalacticNotRegistered_Throws()
 		{
 			var definitions = InitializeDefinitions();
-			Assert.Throws<AggregateException>(
+			Assert.Throws<ArgumentException>(
 				() => new UnitConverter(definitions).ToArabic("asdf"));
 		}
 
