@@ -29,7 +29,7 @@ namespace GalaxyMarket.CurrencyExchange.Handlers
 					var amount = components[1].Replace(
 						commodity,
 						string.Empty,
-						StringComparison.CurrentCultureIgnoreCase).TrimEnd();
+						StringComparison.InvariantCultureIgnoreCase).TrimEnd();
 					output = $"{amount} {commodity} is {this.market.Query(commodity, this.converter.ToArabic(amount)):0.#} Credits";
 					return true;
 				}

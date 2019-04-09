@@ -41,7 +41,7 @@ namespace GalaxyMarket.CurrencyExchange.Converters
 			{
 				while (romanToConvert.StartsWith(
 					symbol,
-					StringComparison.CurrentCultureIgnoreCase))
+					StringComparison.InvariantCultureIgnoreCase))
 				{
 					result += value;
 					romanToConvert = romanToConvert.Substring(symbol.Length);
@@ -81,7 +81,7 @@ namespace GalaxyMarket.CurrencyExchange.Converters
 			if (ds.Length == 2 &&
 				romanDigits.Contains(
 					contra,
-					StringComparison.CurrentCultureIgnoreCase))
+					StringComparison.InvariantCultureIgnoreCase))
 				throw new ArgumentException($"Incorrect combination: {contra}+{special}");
 		}
 
@@ -97,7 +97,7 @@ namespace GalaxyMarket.CurrencyExchange.Converters
 
 		private static void SpecialCaseRemoveAndAdd(string romanDigits, string pattern)
 		{
-			if (romanDigits.Contains(pattern, StringComparison.CurrentCultureIgnoreCase))
+			if (romanDigits.Contains(pattern, StringComparison.InvariantCultureIgnoreCase))
 				throw new ArgumentException($"Incorrect Roman numeral: {pattern}");
 		}
 	}

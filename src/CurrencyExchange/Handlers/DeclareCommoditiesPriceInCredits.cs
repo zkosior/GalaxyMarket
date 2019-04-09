@@ -37,7 +37,7 @@ namespace GalaxyMarket.CurrencyExchange.Handlers
 									components[0].Replace(
 										commodity,
 										string.Empty,
-										StringComparison.CurrentCultureIgnoreCase).Trim()),
+										StringComparison.InvariantCultureIgnoreCase).Trim()),
 								price);
 							output = null;
 							return true;
