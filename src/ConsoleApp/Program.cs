@@ -36,12 +36,14 @@ namespace GalaxyMarket.ConsoleApp
 					Console.WriteLine("Finished.");
 				}
 			}
+#pragma warning disable CA1031 // Do not catch general exception types
 			catch (Exception exception)
 			{
 				// not all exception can be caught here and not all should be,
 				// but right here I just want to gracefully exit application
 				Console.WriteLine(exception.Message);
 			}
+#pragma warning restore CA1031 // Do not catch general exception types
 
 			Console.ReadKey();
 		}
